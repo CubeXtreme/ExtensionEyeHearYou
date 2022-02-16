@@ -1,0 +1,24 @@
+{
+    "name": "HearMOut",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "An extension to help blind people",
+    "icons": {
+        "16": "icons/XD.png",
+        "32": "icons/XD.png",
+        "48": "icons/XD.png",
+        "128": "icons/XD.png"
+    },
+    "browser_action": {
+        "default_icon": "icons/XD.png"
+    },
+    "background": {
+        "scripts": ["popup/background.js"]
+    },
+    "permissions": [
+        "history",
+        "alarms",
+        "tts",
+        "tabs"
+    ]
+}
