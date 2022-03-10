@@ -1,13 +1,9 @@
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-var phrases = ['inicio', 'fin', 'subir página', 'bajar página', 'atrás', 'recargar', 'f5'];
-var phrasePara = document.querySelector('.phrase');
-var resultPara = document.querySelector('.result');
-var diagnosticPara = document.querySelector('.output');
-var testBtn = document.querySelector('button');
+var phrases = ['inicio', 'fin', 'subir página', 'bajar página', 'atrás', 'recargar', 'f5', 'adelante'];
 var test = 0;
-var aumento = (document.body.scrollHeight / 5) | 0;
+var aumento = (document.body.scrollHeight / 6) | 0;
 
 function randomPhrase() {
   var number = Math.floor(Math.random() * phrases.length);
@@ -22,6 +18,7 @@ String.prototype.removeCharAt = function(i) {
 
 function sonido() {
 	var audio = new Audio('https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-77317/zapsplat_fantasy_magic_wand_ping_single_fairy_002_80469.mp3');
+	audio.volume = 0.7;
 	audio.play();
 }
 
@@ -47,13 +44,6 @@ function testSpeech() {
 		}
 		console.log(speechResult);
 		console.log('Confidence: ' + event.results[0][0].confidence);
-		//if (speechResult == 'recargar' || speechResult == 'f5') {
-		//	test = 0;
-		//	window.scrollTo(0, 0);
-		//	console.log(test);
-		//	location.reload();
-
-		//}
 		if (speechResult == 'inicio.' || speechResult == 'inicio' || speechResult == 'recargar' || speechResult == 'f5' || speechResult == "f 5") {
 			test = 0;
 			window.scrollTo(0, 0);
@@ -82,7 +72,11 @@ function testSpeech() {
 			}
 		}
 		if (speechResult == 'atrás' || speechResult == 'atrás.') {
-			window.history.back()
+			window.history.back();
+			console.log(test);
+		}
+		if (speechResult == 'adelante' || speechResult == 'adelante.') {
+			window.history.forward();
 			console.log(test);
 		}
 	}
@@ -117,4 +111,4 @@ function testSpeech() {
 		console.log('SpeechRecognition.onstart');
 	}
 }
-setInterval(testSpeech,8000);
+setInterval(testSpeech,15000);
