@@ -1,7 +1,7 @@
 {
     "name": "EyeHearYou",
     "version": "0.1",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "An extension to help blind people",
     "permissions": [
         "history", "alarms",
@@ -12,7 +12,7 @@
         "32": "XD.png",
         "128": "XD.png"
     },
-    "browser_action": {
+    "action": {
         "default_icon": "XD.png",
         "default_popup": "main.html"
     },

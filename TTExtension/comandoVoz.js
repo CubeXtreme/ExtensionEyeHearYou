@@ -20,7 +20,13 @@ String.prototype.removeCharAt = function(i) {
 	return tmp.join('');
 }
 
+function sonido() {
+	var audio = new Audio('https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-77317/zapsplat_fantasy_magic_wand_ping_single_fairy_002_80469.mp3');
+	audio.play();
+}
+
 function testSpeech() {
+	sonido();
 	var phrase = phrases[randomPhrase()];
 	var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase + ';';
 	var recognition = new SpeechRecognition();
@@ -48,12 +54,11 @@ function testSpeech() {
 		//	location.reload();
 
 		//}
-		if (speechResult == 'inicio.' || speechResult == 'inicio' || speechResult == 'recargar' || speechResult == 'f5') {
+		if (speechResult == 'inicio.' || speechResult == 'inicio' || speechResult == 'recargar' || speechResult == 'f5' || speechResult == "f 5") {
 			test = 0;
 			window.scrollTo(0, 0);
 			console.log("test= "+test);
-			if (speechResult == 'recargar' || speechResult == 'f5'){
-
+			if (speechResult == 'recargar' || speechResult == 'f5' || speechResult == "f 5"){
 					location.reload();
 			}
 		}
@@ -85,7 +90,7 @@ function testSpeech() {
 		recognition.stop();
 	}
 	recognition.onerror = function(event) {
-		diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
+		console.error(event.error);
 	}
 	recognition.onaudiostart = function(event) {
 		console.log('SpeechRecognition.onaudiostart');
