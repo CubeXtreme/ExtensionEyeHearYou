@@ -18,7 +18,13 @@ String.prototype.removeCharAt = function(i) {
 
 function sonido() {
 	var audio = new Audio('https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-77317/zapsplat_fantasy_magic_wand_ping_single_fairy_002_80469.mp3');
-	audio.volume = 0.7;
+	audio.volume = 0.6;
+	audio.play();
+}
+
+function falla() {
+	var audio = new Audio('https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-61905/zapsplat_cartoon_wrong_answer_fail_descending_tone_001_69415.mp3');
+	audio.volume = 0.5;
 	audio.play();
 }
 
@@ -51,33 +57,30 @@ function testSpeech() {
 			if (speechResult == 'recargar' || speechResult == 'f5' || speechResult == "f 5"){
 					location.reload();
 			}
-		}
-		if (speechResult == 'fin' || speechResult == 'fin.') {
+		} else if (speechResult == 'fin' || speechResult == 'fin.') {
 			test = document.body.scrollHeight;
 			window.scrollTo(0, document.body.scrollHeight);
 			console.log(test);
-		}
-		if (speechResult == 'subir página' || speechResult == 'subir página.') {
+		} else if (speechResult == 'subir página' || speechResult == 'subir página.') {
 			if (test > 0) {
 				test -= aumento;
 				window.scrollTo(0, test);
 				console.log("test= "+test);
 			}
-		}
-		if (speechResult == 'bajar página' || speechResult == 'bajar página.') {
+		} else if (speechResult == 'bajar página' || speechResult == 'bajar página.') {
 			if (test < document.body.scrollHeight) {
 				test += aumento;
 				window.scrollTo(0, test);
 				console.log("test= "+test);
 			}
-		}
-		if (speechResult == 'atrás' || speechResult == 'atrás.') {
+		} else if (speechResult == 'atrás' || speechResult == 'atrás.') {
 			window.history.back();
 			console.log(test);
-		}
-		if (speechResult == 'adelante' || speechResult == 'adelante.') {
+		} else if (speechResult == 'adelante' || speechResult == 'adelante.') {
 			window.history.forward();
 			console.log(test);
+		} else {
+			falla();
 		}
 	}
 	recognition.onspeechend = function() {

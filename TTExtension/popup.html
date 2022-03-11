@@ -1,30 +1,59 @@
 <html>
     <head>
+        <meta charset="UTF-8">
         <link type="text/css" rel="stylesheet" href="stylepopup.css">
     </head>
     <body>
         <div class="container">
-            <div class="header">a</div>
-            <div class="LabelTitle">b</div>
+            <div class="header">EyeHearYou</div>
+            <div class="LabelTitle">Seleccione que funcionalidades quiere activar o desactivar según sea el caso</div>
             <div class="SwitchFunction">
-              <div class="tts">c</div>
-              <div class="butontts">d</div>
-              <div class="comandoV">e</div>
-              <div class="butoncomandoV">f</div>
+              <div class="tts">Text-to-Speech</div>
+              <div class="butontts">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="comandoV">Navegación por Voz</div>
+              <div class="butoncomandoV">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
             </div>
             <div class="ComboOptions">
-              <div class="padding">g</div>
-              <div class="idiomas">h</div>
-              <div class="voces">i</div>
-              <div class="padding2">j</div>
+              <div class="padding"></div>
+              <div class="idiomas">
+                <select>
+                  <option>Idioma</option>
+                  <option>Español</option>
+                  <option>Inglés</option>
+                </select>
+              </div>
+              <div class="voces">
+                <select>
+                  <option>Elige la voz de tu preferencia</option>
+                  <option>P A B L O</option>
+                  <option>J U A N</option>
+                </select>
+              </div>
+              <div class="padding2"></div>
             </div>
             <div class="Buttons">
-              <div class="padding3">k</div>
-              <div class="pruebaVoz">l</div>
-              <div class="padding4">m</div>
-              <div class="apply">n</div>
+              <div class="padding3">
+
+              </div>
+              <div class="pruebaVoz">
+                <button onclick="pruebaVoz()">Prueba de Voz</button>
+              </div>
+              <div class="padding4"></div>
+              <div class="apply">
+                <button onclick="applySettings()">Aplicar Cambios</button>
+              </div>
             </div>
-            <div class="footer">o</div>
+            <div class="footer">Copyright&copy; 2022 ESCOM-IPN</div>
           </div>
     </body>
 </html>
