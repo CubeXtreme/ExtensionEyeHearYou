@@ -5,10 +5,8 @@ var inputTxt = document.querySelector('.txt');
 var voiceSelect = document.getElementById("voces");
 var languageSelect= document.getElementById("idiomas");
 
-//console.log("Su idioma Inicial es: "+languageSelect.value);
-
 var voices = [];
-
+var seleccionador = 'Español';
 
 function listaDinamica(listaVoces,idiomaSeleccionado){
   var seleccionador= '';
@@ -20,8 +18,7 @@ function listaDinamica(listaVoces,idiomaSeleccionado){
       seleccionador='en-';
     break;
   }
-    
-  var selectedIndex = voiceSelect.selectedIndex < 0 ? 20 : voiceSelect.selectedIndex;
+
   voiceSelect.innerHTML = '';
   for(i=0; i<listaVoces.length;i++){
     if(listaVoces[i].lang.includes(seleccionador)){
@@ -32,9 +29,10 @@ function listaDinamica(listaVoces,idiomaSeleccionado){
       voiceSelect.appendChild(option); 
     }
   }
-  voiceSelect.selectedIndex = selectedIndex;
+  voiceSelect.selectedIndex = 0;
 
 }
+
 function populateVoiceList() {
   voices = synth.getVoices().sort(function (a, b) {
       const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
@@ -43,13 +41,16 @@ function populateVoiceList() {
       else return +1;
   });
 
-  listaDinamica(voices,languageSelect.value);
+  listaDinamica(voices,seleccionador);
 
 }
 populateVoiceList();
 if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = populateVoiceList;
 }
+
+console.log("Voces ahora si cargadas");
+console.log(voices);
 
 function speak(){
     if (synth.speaking) {

@@ -31,7 +31,7 @@ function falla() {
 function testSpeech() {
     sonido();
 
-    chrome.storage.sync.get(['myValue'], function(result) {
+    chrome.storage.sync.get('aidioma', function(result) {
         console.log(result);
     });
 
