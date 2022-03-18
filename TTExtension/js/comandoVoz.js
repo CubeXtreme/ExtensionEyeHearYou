@@ -4,6 +4,9 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 var phrases = ['inicio', 'fin', 'subir página', 'bajar página', 'atrás', 'recargar', 'f5', 'adelante'];
 var test = 0;
 var aumento = (document.body.scrollHeight / 6) | 0;
+var selectIdioma;
+
+window.onload = chrome.storage.sync.get('aidioma', function(result) {console.log("Dentro receiver");selectIdioma = result.aidioma.data;});
 
 function randomPhrase() {
     var number = Math.floor(Math.random() * phrases.length);
@@ -30,11 +33,7 @@ function falla() {
 
 function testSpeech() {
     sonido();
-
-    chrome.storage.sync.get('aidioma', function(result) {
-        console.log(result);
-    });
-
+    console.log(selectIdioma);
     var phrase = phrases[randomPhrase()];
     var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase + ';';
     var recognition = new SpeechRecognition();
