@@ -6,8 +6,6 @@ var test = 0;
 var aumento = (document.body.scrollHeight / 6) | 0;
 var selectIdioma;
 
-window.onload = chrome.storage.sync.get('aidioma', function(result) {console.log("Dentro receiver");selectIdioma = result.aidioma.data;});
-
 function randomPhrase() {
     var number = Math.floor(Math.random() * phrases.length);
     return number;

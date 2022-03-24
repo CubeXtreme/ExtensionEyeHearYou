@@ -20,7 +20,8 @@
         "matches":
             ["<all_urls>"],
         "js" :
-        ["js/comandoVoz.js",
+        ["js/jquery-3.6.0.min.js",
+        "js/comandoVoz.js",
         "js/talkBack.js"]
     }]
 }
