@@ -8,14 +8,11 @@ var languageSelect;
 var voices = [];
 var seleccionador = 'Español';
 
-window.onload = chrome.storage.sync.get('aidioma', function(result) {
-    console.log("Dentro receiver talkback");
-    voiceSelect = result.aidioma.data1;
-    languageSelect = result.aidioma.data2;
-});
+testPromise();
 
 function listaDinamica(listaVoces, idiomaSeleccionado) {
     var seleccionador = '';
+    var textOption;
     switch (idiomaSeleccionado) {
         case 'Español':
             seleccionador = 'es-';
@@ -30,17 +27,14 @@ function listaDinamica(listaVoces, idiomaSeleccionado) {
             option.textContent = listaVoces[i].name + ' (' + listaVoces[i].lang + ')';
             option.setAttribute('data-lang', listaVoces[i].lang);
             option.setAttribute('data-name', listaVoces[i].name);
-            voiceSelect.appendChild(option);
+            textOption = outer(option);
+            
         }
     }
     voiceSelect.selectedIndex = 0;
-
 }
 
 function populateVoiceList() {
-    console.log("A");
-    console.log(voiceSelect);
-    console.log(languageSelect);
     voices = synth.getVoices().sort(function(a, b) {
         const aname = a.name.toUpperCase(),
             bname = b.name.toUpperCase();
@@ -53,13 +47,30 @@ function populateVoiceList() {
 
 }
 
-populateVoiceList();
-if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = populateVoiceList;
-}
+function testPromise() {
+    var p1 = new Promise(
+        function(resolve, reject) {
+            console.log('En promise');
+            chrome.storage.sync.get('aidioma', function(result) {
+                console.log("Dentro receiver talkback");
+                languageSelect = result.aidioma.data1;
+                voiceSelect = result.aidioma.data2;
+            });
+            window.setTimeout(
+                function() {
+                    resolve()
+                }, 250);
+        });
 
-console.log("Voces ahora si cargadas");
-console.log(voices);
+    p1.then(
+        function() {
+            populateVoiceList();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = populateVoiceList;
+            }
+            console.log("Fin Promise");
+        });
+}
 
 function speak() {
     if (synth.speaking) {
@@ -88,6 +99,19 @@ function speak() {
         synth.speak(utterThis);
 
     }
+}
+
+function outer(element){
+    var valor;
+    if (element.outerHTML) {
+        valor = element.outerHTML;
+    }
+    else if (XMLSerializer) {
+        valor = new XMLSerializer().serializeToString(element);
+    } else {
+        console.log("WTF?!?!?!");
+    }
+    return valor;
 }
 
 inputForm.onsubmit = function(event) {

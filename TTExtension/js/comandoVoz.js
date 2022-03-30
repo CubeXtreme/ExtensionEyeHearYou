@@ -31,7 +31,6 @@ function falla() {
 
 function testSpeech() {
     sonido();
-    console.log(selectIdioma);
     var phrase = phrases[randomPhrase()];
     var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase + ';';
     var recognition = new SpeechRecognition();
