@@ -4,6 +4,8 @@ var inputForm = document.querySelector('form');
 var inputTxt = document.querySelector('.txt');
 var voiceSelect;
 var languageSelect;
+var tts;
+
 
 var voices = [];
 var seleccionador = 'Español';
@@ -55,6 +57,7 @@ function testPromise() {
                 console.log("Dentro receiver talkback");
                 languageSelect = result.aidioma.data1;
                 voiceSelect = result.aidioma.data2;
+                test=result.aidioma.data3;
             });
             window.setTimeout(
                 function() {
@@ -69,6 +72,7 @@ function testPromise() {
                 speechSynthesis.onvoiceschanged = populateVoiceList;
             }
             console.log("Fin Promise");
+            console.log(test);
         });
 }
 
