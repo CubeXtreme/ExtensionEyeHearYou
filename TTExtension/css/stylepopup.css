@@ -2,7 +2,7 @@
   height: 170px;
   width: 450px;
   grid-template-columns: 1fr;
-  grid-template-rows: 20px 30px 35px 90px 30px 20px;
+  grid-template-rows: 20px 30px 30px 130px 30px 20px;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:

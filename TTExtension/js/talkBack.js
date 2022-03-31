@@ -1,12 +1,7 @@
 var synth = window.speechSynthesis;
-
 var inputForm = document.querySelector('form');
 var inputTxt = document.querySelector('.txt');
-var voiceSelect;
-var languageSelect;
-var tts;
-
-
+var voiceSelect, tts, voiceCom;
 var voices = [];
 var seleccionador = 'Español';
 
@@ -30,7 +25,6 @@ function listaDinamica(listaVoces, idiomaSeleccionado) {
             option.setAttribute('data-lang', listaVoces[i].lang);
             option.setAttribute('data-name', listaVoces[i].name);
             textOption = outer(option);
-            
         }
     }
     voiceSelect.selectedIndex = 0;
@@ -44,35 +38,36 @@ function populateVoiceList() {
         else if (aname == bname) return 0;
         else return +1;
     });
-
     listaDinamica(voices, seleccionador);
-
 }
 
 function testPromise() {
     var p1 = new Promise(
         function(resolve, reject) {
-            console.log('En promise');
-            chrome.storage.sync.get('aidioma', function(result) {
-                console.log("Dentro receiver talkback");
-                languageSelect = result.aidioma.data1;
-                voiceSelect = result.aidioma.data2;
-                test=result.aidioma.data3;
+            chrome.storage.sync.get('container', function(result) {
+                console.log(result);
+                voiceSelect = result.container.data1;
+                tts = result.container.data2;
+                voiceCom = result.container.data3;
+                seleccionIdioma = result.container.data4;
+                seleccionVoz = result.container.data5;
             });
             window.setTimeout(
                 function() {
                     resolve()
                 }, 250);
         });
-
     p1.then(
         function() {
             populateVoiceList();
             if (speechSynthesis.onvoiceschanged !== undefined) {
                 speechSynthesis.onvoiceschanged = populateVoiceList;
             }
-            console.log("Fin Promise");
-            console.log(test);
+            console.log(voiceSelect);
+            console.log(tts);
+            console.log(voiceCom);
+            console.log(seleccionIdioma);
+            console.log(seleccionVoz);
         });
 }
 
@@ -99,18 +94,15 @@ function speak() {
                 break;
             }
         }
-
         synth.speak(utterThis);
-
     }
 }
 
-function outer(element){
+function outer(element) {
     var valor;
     if (element.outerHTML) {
         valor = element.outerHTML;
-    }
-    else if (XMLSerializer) {
+    } else if (XMLSerializer) {
         valor = new XMLSerializer().serializeToString(element);
     } else {
         console.log("WTF?!?!?!");
@@ -125,7 +117,9 @@ inputForm.onsubmit = function(event) {
 
     inputTxt.blur();
 }
+
+/*
 languageSelect.onchange = function() {
     console.log("Idioma cambiado a: " + languageSelect.value);
     listaDinamica(voices, languageSelect.value);
-}
+}*/
