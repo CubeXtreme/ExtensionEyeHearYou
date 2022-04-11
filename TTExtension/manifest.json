@@ -14,8 +14,15 @@
     },
     "action": {
         "default_icon": "imgs/XD.png",
-        "default_popup": "popup.html"
+        "default_popup": "popup1.html"
     },
+    "background": {
+        "service_worker": "js/background.js"
+    },
+    "web_accessible_resources": [{
+        "resources": ["popup2.html","popup3.html","popup4.html"],
+        "matches": ["<all_urls>"]
+      }],
     "content_scripts": [{
         "matches":
             ["<all_urls>"],
