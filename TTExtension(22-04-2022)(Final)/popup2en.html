@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link type="text/css" rel="stylesheet" href="css/stylepopup.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">EyeHearYou</div>
+            <div class="LabelTitle">Seleccione que funcionalidades quiere activar o desactivar según sea el caso</div>
+            <div class="SwitchFunction">
+              <div class="tts">Text-to-Speech</div>
+              <div class="butontts">
+                <label class="switch" id = "ttsSwitch">
+                  <input type="checkbox" id="TextToSpeech">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="comandoV">Navegación por Voz</div>
+              <div class="butoncomandoV">
+                <label class="switch" id = "vozSwitch">
+                  <input type="checkbox" id="NavegacionPorVoz">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div class="ComboOptions">
+              <div class="padding"></div>
+              <div class="idiomas">
+                <p>Idioma:</p>
+                <select id = "idiomas">
+                  <option>Inglés</option>
+                  <option>Español</option>
+                </select>
+              </div>
+              <div class="voces">
+                <p>Elige la voz de tu preferencia:</p>
+                <select id = "voces">
+                  <option>Default</option>
+                </select>
+              </div>
+              <div class="padding2"></div>
+            </div>
+            <div class="Buttons">
+              <div class="padding3">
+              </div>
+              <div class="pruebaVoz">
+                <button id="pruebaVoz">Prueba de Voz</button>
+              </div>
+              <div class="padding4"></div>
+              <div class="apply">
+                <button id="aplicarCambios">Aplicar Cambios</button>
+              </div>
+            </div>
+            <div class="footer">Copyright&copy; 2022 ESCOM-IPN</div>
+          </div>
+          <script src="js/popup.js"></script>
+    </body>
+</html>

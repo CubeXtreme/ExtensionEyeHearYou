@@ -1,0 +1,29 @@
+{
+    "name": "EyeHearYou",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "An extension to help blind people",
+    "permissions": [
+        "tts", "tabs",
+        "storage"
+    ],
+    "icons": {
+        "16": "imgs/XD.png",
+        "32": "imgs/XD.png",
+        "128": "imgs/XD.png"
+    },
+    "action": {
+        "default_icon": "imgs/XD.png",
+        "default_popup": "popup1es.html"
+    },
+    "background": {
+        "service_worker": "js/background.js"
+    },
+    "content_scripts": [{
+        "matches":
+            ["<all_urls>"],
+        "js" :
+        ["js/comandoVoz.js",
+        "js/talkBack.js"]
+    }]
+}
